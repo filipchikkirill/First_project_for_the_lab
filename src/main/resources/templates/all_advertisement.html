@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>All active Advertisement</title>
+  <div th:replace="fragments/common :: header"/>
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+
+<div class="container my-3">
+  <div class="card-columns border-dark" th:if="${advertisements!=null and !advertisements.empty}">
+    <div th:each="advert : ${advertisements}">
+      <div class="card" th:classappend="${#authentication.principal.username == advert.user.username ? 'bg-success' : ''}">
+        <div class="card-header bg-light font-weight-bold"
+             th:text="${advert.title}">Header</div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${advert.model}">Titel</h5>
+          <p sec:authorize="hasAuthority('ADMIN')" th:text="${'username: ' + advert.user.username}">footer</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item font-weight-light"
+              th:text="${'mileage(km): ' + (advert.mileage == null?'unknown': advert.mileage)}"></li>
+          <li class="list-group-item font-weight-light"
+              th:text="${'year: ' + (advert.year == null?'unknown': advert.year)}"></li>
+          <li class="list-group-item font-weight-bold"
+              th:text="${'price($): ' + (advert.price == null?'unknown': advert.price)}"></li>
+        </ul>
+        <div class="card-footer text-center">
+          <button class="btn btn-dark" data-target="#myModal" data-toggle="modal"
+                  th:attr="data-id_advert=${advert.id}"
+                  th:if="${#authentication.principal.username!=advert.user.username}" type="button">Add my price</button>
+          <a class="btn btn-dark" role="button" sec:authorize="hasAuthority('ADMIN')"
+             th:href="@{'/advertisement/get/' + ${advert.id}}">Info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Ad response</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="/adResponse" method="post">
+          <div class="form-group">
+            <input type="hidden" id="ad_resp" class="form-control" name="idAdvertisement"/>
+            <label for="price" class="col-form-label">Your price</label>
+            <input type="number" class="form-control" id="price" name="myPrice" />
+            <div>
+              <button type="submit" class="btn btn-dark">Respond</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#myModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var id_advert = button.data('id_advert')
+      var modal = $(this)
+      modal.find('#ad_resp').val(id_advert)
+    })
+</script>
+
+<div th:replace="fragments/common :: footer"/>
+</body>
+</html>

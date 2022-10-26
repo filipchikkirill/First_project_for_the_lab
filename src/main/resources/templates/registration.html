@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Registration</title>
+    <div th:replace="fragments/common :: header"/>
+</head>
+
+<body>
+<!--Nav bar start-->
+<div th:replace="/fragments/navbar :: navbar"/>
+<!--Nav bar end-->
+
+<div th:replace="/fragments/common :: form (name ='registration')"></div>
+
+<div th:replace="fragments/common :: footer"/>
+</body>

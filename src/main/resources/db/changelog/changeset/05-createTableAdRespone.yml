@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: "5"
+      author: Konstantin Ivanov
+      changes:
+        - createTable:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: ad_response_pkey
+                    nullable: false
+              - column:
+                  name: my_price
+                  type: BIGINT

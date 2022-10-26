@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Advertisement</title>
+    <div th:replace="fragments/common :: header"/>
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+    <div class="container mt-5">
+        <button aria-controls="collapseForm" aria-expanded="false" class="btn btn-dark btn-lg btn-block"
+                data-target="#collapseForm"
+                data-toggle="collapse" type="button">
+            New Advertisement
+        </button>
+    </div>
+    <div class="container mt-5 collapse" id="collapseForm"
+         th:classappend="${#fields.hasAnyErrors()} ? 'show' : ''"
+         th:object="${advertisement}">
+        <form th:action="@{'/advertisement'}" method="post" >
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Advertisement title :</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{title}" placeholder="insert title" />
+                </div>
+                <div th:if="${#fields.hasErrors('title')}">
+                    <span th:errors="*{title}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Car model :</label>
+                <div class="col-sm-6">
+                    <input type="text" th:field="*{model}" placeholder="insert model" />
+                </div>
+                <div th:if="${#fields.hasErrors('model')}">
+                    <span th:errors="*{model}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Year of car prod :</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{year}" placeholder="insert year" />
+                </div>
+                <div th:if="${#fields.hasErrors('year')}">
+                    <span th:errors="*{year}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Mileage of car(km) :</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{mileage}" placeholder="insert mileage" />
+                </div>
+                <div th:if="${#fields.hasErrors('mileage')}">
+                    <span th:errors="*{mileage}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Price($) :</label>
+                <div class="col-sm-6">
+                    <input type="number" th:field="*{price}" placeholder="insert price" />
+                </div>
+                <div th:if="${#fields.hasErrors('price')}">
+                    <span th:errors="*{price}" />
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-dark" type="submit">Add</button>
+            </div>
+        </form>
+    </div >
+
+    <div class="container my-1" th:if="${curAdvert!=null and !curAdvert.empty}">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center" colspan="5" scope="col">My advertisements</th>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Car model</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="advert, iStat : ${curAdvert}" th:classappend="${!advert.active} ? 'bg-success' : ''">
+                    <th scope="row" th:text="${iStat.index}" />
+                    <td th:text="${advert.title}" />
+                    <td th:text="${advert.model}" />
+                    <td th:text="${advert.price}" />
+                    <td><a class="btn btn-dark" role="button" th:href="@{'/advertisement/get/' + ${advert.id}}">Open</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="container my-1" th:if="${curUserResp!=null and !curUserResp.empty}">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center" colspan="6" scope="col">My Ads responses</th>
+                </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Car model</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">My price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:classappend="${!resp.advertisement.active} ? 'bg-success' : ''"
+                    th:each="resp, iStat : ${curUserResp}">
+
+                    <th scope="row" th:text="${iStat.index}" />
+                    <td th:text="${resp.advertisement.title}" />
+                    <td th:text="${resp.advertisement.model}" />
+                    <td th:text="${resp.advertisement.price}" />
+                    <td th:text="${resp.myPrice}" />
+                    <td><a class="btn btn-dark" role="button" th:href="@{'/advertisement/get/' + ${resp.advertisement.id}}">Open</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+<div th:replace="fragments/common :: footer"/>
+
+</body>
+</html>

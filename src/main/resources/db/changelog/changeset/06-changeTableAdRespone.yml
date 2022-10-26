@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: "6"
+      author: Filipchik Kirill
+      changes:
+        - addColumn:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+              - column:
+                  name: advertisement_id
+                  type: BIGINT
+
+        - createSequence:
+            startValue: 100
+            incrementBy: 1
+            sequenceName: ad_response_seq
+
+        -  modifyDataType:
+             columnName: my_price
+             newDataType: INT
+             schemaName: public
+             tableName: ad_response
+
+        - addForeignKeyConstraint:
+            baseTableName: ad_response
+            baseColumnNames: user_id
+            constraintName: user_fkey
+            referencedTableName: usr
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: ad_response
+            baseColumnNames: advertisement_id
+            constraintName: advertisement_fkey
+            referencedTableName: advertisement
+            referencedColumnNames: id

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  database:
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: PASSWORD
+      POSTGRES_USER: USERNAME
+      POSTGRES_DB: PROJECT_DB
+    ports:
+      - 5432:5432

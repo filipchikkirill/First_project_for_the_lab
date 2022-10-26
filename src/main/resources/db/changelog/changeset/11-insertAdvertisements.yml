@@ -1,0 +1,285 @@
+databaseChangeLog:
+  - changeSet:
+      id: "11"
+      author: Filipchik Kirill
+      comment: "insert advertisements and responses"
+      changes:
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: model
+                  value: "Mercedes-Benz GL-Класс 350 CDI BlueTEC II (X166)"
+              - column:
+                  name: year
+                  value: "2013"
+              - column:
+                  name: mileage
+                  value: "120000"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "38517"
+              - column:
+                  name: user_id
+                  value: "2"
+              - column:
+                  name: title
+                  value: "Selling SUV very cheap"
+
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "3"
+              - column:
+                  name: model
+                  value: "Kia Seltos I"
+              - column:
+                  name: year
+                  value: "2020"
+              - column:
+                  name: mileage
+                  value: "28461"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "25561"
+              - column:
+                  name: user_id
+                  value: "1"
+              - column:
+                  name: title
+                  value: "Admin sells SUV, almost new"
+
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "4"
+              - column:
+                  name: model
+                  value: "Opel Vectra OPC C"
+              - column:
+                  name: year
+                  value: "2006"
+              - column:
+                  name: mileage
+                  value: "228807"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "6989"
+              - column:
+                  name: user_id
+                  value: "4"
+              - column:
+                  name: title
+                  value: "Selling black pearl"
+
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "5"
+              - column:
+                  name: model
+                  value: "Cadillac Escalade IV"
+              - column:
+                  name: year
+                  value: "2020"
+              - column:
+                  name: mileage
+                  value: "16666"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "93841"
+              - column:
+                  name: user_id
+                  value: "5"
+              - column:
+                  name: title
+                  value: "How are you, how are you this new cadillac"
+
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "6"
+              - column:
+                  name: model
+                  value: "LADA 2104"
+              - column:
+                  name: year
+                  value: "1987"
+              - column:
+                  name: mileage
+                  value: "48000"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "770"
+              - column:
+                  name: user_id
+                  value: "6"
+              - column:
+                  name: title
+                  value: "Support domestic producers!"
+
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "7"
+              - column:
+                  name: model
+                  value: "Porsche 911 GT3 992"
+              - column:
+                  name: year
+                  value: "2021"
+              - column:
+                  name: mileage
+                  value: "16"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "294128"
+              - column:
+                  name: user_id
+                  value: "6"
+              - column:
+                  name: title
+                  value: "Need For Steed!"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: my_price
+                  value: "35000"
+              - column:
+                  name: user_id
+                  value: "3"
+              - column:
+                  name: advertisement_id
+                  value: "2"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "3"
+              - column:
+                  name: my_price
+                  value: "750"
+              - column:
+                  name: user_id
+                  value: "3"
+              - column:
+                  name: advertisement_id
+                  value: "6"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "4"
+              - column:
+                  name: my_price
+                  value: "760"
+              - column:
+                  name: user_id
+                  value: "1"
+              - column:
+                  name: advertisement_id
+                  value: "6"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "5"
+              - column:
+                  name: my_price
+                  value: "666"
+              - column:
+                  name: user_id
+                  value: "4"
+              - column:
+                  name: advertisement_id
+                  value: "6"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "6"
+              - column:
+                  name: my_price
+                  value: "777"
+              - column:
+                  name: user_id
+                  value: "7"
+              - column:
+                  name: advertisement_id
+                  value: "6"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "7"
+              - column:
+                  name: my_price
+                  value: "888"
+              - column:
+                  name: user_id
+                  value: "8"
+              - column:
+                  name: advertisement_id
+                  value: "6"
+
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "8"
+              - column:
+                  name: my_price
+                  value: "888"
+              - column:
+                  name: user_id
+                  value: "5"
+              - column:
+                  name: advertisement_id
+                  value: "6"

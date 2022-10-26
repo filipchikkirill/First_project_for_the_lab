@@ -1,0 +1,22 @@
+image: openjdk:11
+
+stages:
+  - checkstyle
+  - test
+  - build
+
+build:
+  stage: build
+  script:
+    - ./gradlew assemble
+  allow_failure: true
+
+checkstyle:
+  stage: checkstyle
+  script:
+    - ./gradlew checkstyleMain checkstyleTest
+
+test-job:
+  stage: test
+  script:
+    - ./gradlew test

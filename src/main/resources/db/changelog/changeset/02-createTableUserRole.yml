@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: "2"
+      author: Filipchik Kirill
+      changes:
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: usr_fkey
+                    references: usr (id)
+                    nullable: false
+              - column:
+                  name: roles
+                  type: VARCHAR(255)

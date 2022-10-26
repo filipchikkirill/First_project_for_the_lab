@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: "1"
+      author: Filipchik Kirill
+      changes:
+        - createSequence:
+            startValue: 100
+            incrementBy: 1
+            sequenceName: usr_seq
+        - createTable:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: usr_pkey
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+              - column:
+                  name: active
+                  type: BOOLEAN

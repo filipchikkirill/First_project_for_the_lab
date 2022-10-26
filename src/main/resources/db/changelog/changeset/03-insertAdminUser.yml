@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: "3"
+      author: Filipchik Kirill
+      comment: "Create user admin with password admin"
+      changes:
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password
+                  value: "$2a$10$yKXXDzfV.J1lR0ffWPOlFeDVLUEfk8JVymkgF8R0dYRvEL2JXJWOe"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "1"
+              - column:
+                  name: roles
+                  value: "ADMIN"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "1"
+              - column:
+                  name: roles
+                  value: "USER"

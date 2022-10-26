@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: "7"
+      author: Filipchik Kirill
+      comment: "Create user user with password user"
+      changes:
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: username
+                  value: "user"
+              - column:
+                  name: password
+                  value: "$2a$10$p2YVX0LNqw7JXD0vv/Cg6eBdYSOKb504AKSn4WkZ9WRAJeXmBELUO"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "2"
+              - column:
+                  name: roles
+                  value: "USER"

@@ -1,0 +1,130 @@
+databaseChangeLog:
+  - changeSet:
+      id: "10"
+      author: Filipchik Kirill
+      comment: "Create users with password test"
+      changes:
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "4"
+              - column:
+                  name: username
+                  value: "Kirill"
+              - column:
+                  name: password
+                  value: "$2a$10$4XJY/wI58VyUcGTxCa.9dObLcSo1xE2VLQrr8tKjrHHX/l/SMUdty"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "4"
+              - column:
+                  name: roles
+                  value: "USER"
+
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "5"
+              - column:
+                  name: username
+                  value: "Kostya"
+              - column:
+                  name: password
+                  value: "$2a$10$4XJY/wI58VyUcGTxCa.9dObLcSo1xE2VLQrr8tKjrHHX/l/SMUdty"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "5"
+              - column:
+                  name: roles
+                  value: "USER"
+
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "6"
+              - column:
+                  name: username
+                  value: "Petr"
+              - column:
+                  name: password
+                  value: "$2a$10$4XJY/wI58VyUcGTxCa.9dObLcSo1xE2VLQrr8tKjrHHX/l/SMUdty"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "6"
+              - column:
+                  name: roles
+                  value: "USER"
+
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "7"
+              - column:
+                  name: username
+                  value: "Oleg"
+              - column:
+                  name: password
+                  value: "$2a$10$4XJY/wI58VyUcGTxCa.9dObLcSo1xE2VLQrr8tKjrHHX/l/SMUdty"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "7"
+              - column:
+                  name: roles
+                  value: "USER"
+
+        - insert:
+            tableName: usr
+            columns:
+              - column:
+                  name: id
+                  value: "8"
+              - column:
+                  name: username
+                  value: "Leonid"
+              - column:
+                  name: password
+                  value: "$2a$10$4XJY/wI58VyUcGTxCa.9dObLcSo1xE2VLQrr8tKjrHHX/l/SMUdty"
+              - column:
+                  name: active
+                  value: "true"
+        - insert:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  value: "8"
+              - column:
+                  name: roles
+                  value: "USER"

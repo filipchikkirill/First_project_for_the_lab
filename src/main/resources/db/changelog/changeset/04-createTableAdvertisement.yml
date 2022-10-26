@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: "4"
+      author: Filipchik Kirill
+      changes:
+        - createSequence:
+            startValue: 100
+            incrementBy: 1
+            sequenceName: advert_seq
+        - createTable:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: advert_pkey
+                    nullable: false
+                    unique: true
+              - column:
+                  name: model
+                  type: VARCHAR(255)
+              - column:
+                  name: year
+                  type: INT
+              - column:
+                  name: mileage
+                  type: INT
+              - column:
+                  name: price
+                  type: INT
+              - column:
+                  name: active
+                  type: BOOLEAN
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+              - column:
+                  name: user_id
+                  type: BIGINT
+
+        - addForeignKeyConstraint:
+            baseTableName: advertisement
+            baseColumnNames: user_id
+            constraintName: user_fkey
+            referencedTableName: usr
+            referencedColumnNames: id

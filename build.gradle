@@ -1,0 +1,60 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'checkstyle'
+}
+
+group = 'com.epam'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	compile 'org.liquibase:liquibase-core'
+	compile 'org.hibernate:hibernate-core:5.6.0.Final'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compile "org.springframework.boot:spring-boot-starter-security"
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'org.mockito:mockito-core:3.7.7'
+	testCompile 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+	testCompile 'org.springframework.security:spring-security-test'
+
+}
+
+checkstyle {
+	showViolations = true
+	toolVersion '8.12'
+	maxWarnings = 0
+	maxErrors = 0
+	configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+	source = 'src/main/java'
+}
+checkstyleTest {
+	source = 'src/test/java'
+}
+
+test {
+	useJUnitPlatform()
+}

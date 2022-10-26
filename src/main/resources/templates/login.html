@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="fragments/common :: header"/></head>
+
+<body>
+<!--Nav bar start-->
+    <div th:replace="/fragments/navbar :: navbar"></div>
+
+    <div class="alert alert-danger" role="alert"
+         th:unless="${#httpServletRequest.getParameter('error') == null}">
+        Check your username and password!
+    </div>
+
+    <!--Nav bar end-->
+
+    <div th:replace="/fragments/common :: form (name ='login')"></div>
+
+    <div th:replace="fragments/common :: footer"/>
+</body>

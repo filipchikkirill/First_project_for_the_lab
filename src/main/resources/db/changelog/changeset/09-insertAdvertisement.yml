@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: "9"
+      author: Filipchik Kirill
+      comment: "insert test advertisement and 1 response from user user"
+      changes:
+        - insert:
+            tableName: advertisement
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: model
+                  value: "Ford Model T"
+              - column:
+                  name: year
+                  value: "1908"
+              - column:
+                  name: mileage
+                  value: "0"
+              - column:
+                  name: active
+                  value: "true"
+              - column:
+                  name: price
+                  value: "1000000"
+              - column:
+                  name: user_id
+                  value: "3"
+              - column:
+                  name: title
+                  value: "Tin Lizzie"
+        - insert:
+            tableName: ad_response
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: my_price
+                  value: "499000"
+              - column:
+                  name: user_id
+                  value: "2"
+              - column:
+                  name: advertisement_id
+                  value: "1"

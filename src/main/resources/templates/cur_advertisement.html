@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <title th:text="${advertisement.title}">Advertisement</title>
+  <div th:replace="fragments/common :: header"/>
+</head>
+<body>
+<div th:replace="/fragments/navbar :: navbar"></div>
+<div th:if="${advertisement!=null}">
+  <div class="container my-3">
+    <div class="card-columns border-dark my-3">
+      <div class="card" th:classappend="${!advertisement.active} ? 'bg-success' : ''">
+        <div class="card-header bg-light font-weight-bold"
+             th:text="${advertisement.title == null?'unknown': advertisement.title}">Header</div>
+        <div class="card-body">
+          <h5 class="card-title" th:text="${advertisement.model == null?'unknown': advertisement.model}">Titel</h5>
+          <p sec:authorize="hasAuthority('ADMIN')" th:text="${'username: ' + advertisement.user.username}">footer</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item font-weight-light"
+              th:text="${'mileage(km): ' + (advertisement.mileage == null?'unknown': advertisement.mileage)}"></li>
+          <li class="list-group-item font-weight-light"
+              th:text="${'year: ' + (advertisement.year == null?'unknown': advertisement.year)}"></li>
+          <li class="list-group-item font-weight-bold"
+              th:text="${'price($): ' + (advertisement.price == null?'unknown': advertisement.price)}"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-1"
+       th:if="${advertisement.getAdResponse()!=null and !advertisement.getAdResponse().empty}">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col" sec:authorize="hasAuthority('ADMIN')">Username</th>
+        <th scope="col">price in response</th>
+        <th scope="col" th:if="${#authentication.principal.username==advertisement.user.username}"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="adResp : ${advertisement.getAdResponse}" >
+        <td sec:authorize="hasAuthority('ADMIN')" th:text="${adResp.user.username}" />
+        <td th:if="${#authorization.expression('hasAuthority(''ADMIN'')') ||
+                      #authentication.principal.username==adResp.user.username ||
+                      #authentication.principal.username==advertisement.user.username}"
+            th:text="${adResp.myPrice}"></td>
+        <td th:if="${#authentication.principal.username==advertisement.user.username}">
+          <form action="/advertisement/close" method="post">
+            <input type="hidden" name="adResponseId" th:value="${adResp.id}" />
+            <button type="submit" class="btn btn-dark">Choose</button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div th:replace="fragments/common :: footer"/>
+</body>
+</html>
